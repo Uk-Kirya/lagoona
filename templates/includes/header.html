@@ -1,0 +1,37 @@
+{% load static %}
+{% load my_filters %}
+
+<header class="head">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <a href="{% url 'content:home' %}">
+                    <picture>
+                        <img src="{% static 'img/Logo.svg' %}" alt="">
+                    </picture>
+                </a>
+                <!--
+                <a href="#" class="build__progress">
+                    Ход строительства
+                    <span></span>
+                </a>
+                -->
+                <div>
+                    <a href="tel:{{ phone | shorten_phone }}">{{ phone }}</a>
+                    <button data-bs-toggle="modal" data-bs-target="#application">Получить консультацию</button>
+                    <a href="#" class="wishlist" data-bs-toggle="offcanvas" data-bs-target="#wishlist__container">
+                        {% if wishlist %}
+                            <span>{{ wishlist | length }}</span>
+                        {% endif %}
+                        <picture>
+                            <img src="{% static 'img/heart.svg' %}" alt="">
+                        </picture>
+                    </a>
+                    <picture data-bs-toggle="offcanvas" data-bs-target="#menu">
+                        <img src="{% static 'img/menu.svg' %}" alt="">
+                    </picture>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

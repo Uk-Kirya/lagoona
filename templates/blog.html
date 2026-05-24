@@ -1,0 +1,63 @@
+{% extends 'includes/base.html' %}
+
+{% load static %}
+{% load my_filters %}
+
+{% block title %}
+    Блог — Lagoona Resort & Spa
+{% endblock %}
+
+{% block content %}
+    <main>
+        <div class="container-fluid inner__header">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <ul>
+                            <li><a href="{% url 'content:home' %}">Главная</a></li>
+                            <li>»</li>
+                            <li>Блог</li>
+                        </ul>
+                        <h1>Блог</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container block__13 mt-0">
+            <div class="row">
+                {% for article in articles %}
+                    <div class="col-md-6 col-lg-4 mt-5">
+                        <div class="ratio ratio-4x3">
+                            <div>
+                                <a href="{% url 'content:article' slug=article.slug %}">
+                                    {% if article.image %}
+                                        <picture>
+                                            <img src="{{ article.image.url }}" alt="">
+                                        </picture>
+                                    {% endif %}
+                                </a>
+                            </div>
+                        </div>
+                        <a href="{% url 'content:article' slug=article.slug %}">
+                            <h3>{{ article }}</h3>
+                        </a>
+                        <p>{{ article.date }}</p>
+                    </div>
+                {% endfor %}
+                {% if paginator.num_pages > 1 %}
+                    <div class="col-12">
+                        <ul class="pagination">
+                            {% for item in articles.paginator.page_range %}
+                                {% if item == articles.number %}
+                                    <li><span>{{ item }}</span></li>
+                                {% else %}
+                                    <li><a href="?page={{ item }}">{{ item }}</a></li>
+                                {% endif %}
+                            {% endfor  %}
+                        </ul>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </main>
+{% endblock %}

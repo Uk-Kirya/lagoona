@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{{ subject }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+        }
+        .header {
+            background-color: #0557d9;
+            color: #fff;
+            padding: 16px;
+            text-align: center;
+            border-radius: 2rem;
+        }
+        .content {
+            padding: 20px;
+        }
+        .content p {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        .content a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Заявка с сайта</h1>
+            <h4>Lagoona.group</h4>
+        </div>
+        <div class="content">
+            <ul>
+                <li><b>Тема сообщения:</b> {{ subject }}</li>
+                <li><b>Имя:</b> {{ name }}</li>
+                <li><b>Телефон:</b> {{ phone }}</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

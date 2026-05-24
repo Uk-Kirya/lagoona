@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title>Текстовая страница — Lagoona Resort & Spa</title>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="fav.png" type="image/png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/style.css?v=1">
+</head>
+
+<body class="d-flex flex-column vh-100">
+
+    <header class="head">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <a href="#">
+                        <picture>
+                            <img src="img/Logo.svg" alt="">
+                        </picture>
+                    </a>
+                    <a href="#" class="build__progress">
+                        Ход строительства
+                        <span></span>
+                    </a>
+                    <div>
+                        <a href="tel:+79180069131">+7 918 006 91 31</a>
+                        <button data-bs-toggle="modal" data-bs-target="#application">Получить консультацию</button>
+                        <a href="#" class="wishlist" data-bs-toggle="offcanvas" data-bs-target="#wishlist__container">
+                            <span>3</span>
+                            <picture>
+                                <img src="img/heart.svg" alt="">
+                            </picture>
+                        </a>
+                        <picture data-bs-toggle="offcanvas" data-bs-target="#menu">
+                            <img src="img/menu.svg" alt="">
+                        </picture>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="call__button">
+        <a href="tel:+79180069131">
+            <picture>
+                <img src="img/call.svg" alt="">
+            </picture>
+        </a>
+    </div>
+
+    <main>
+        <div class="container-fluid inner__header">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <ul>
+                            <li><a href="#">Главная</a></li>
+                            <li>»</li>
+                            <li>Текстовая страница</li>
+                        </ul>
+                        <h1>Текстовая страница</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container mt-5 mb-5">
+            <div class="row">
+                <div class="col">
+                    <!-- Заголовки разных уровней -->
+                    <h1>Заголовок H1 — главный заголовок</h1>
+                    <h2>Заголовок H2 — раздел</h2>
+                    <h3>Заголовок H3 — подраздел</h3>
+                    <h4>Заголовок H4 — второстепенный</h4>
+                    <h5>Заголовок H5</h5>
+                    <h6>Заголовок H6 — самый мелкий</h6>
+
+                    <!-- Абзацы -->
+                    <p>Это обычный абзац текста. Здесь можно проверить базовые стили: <strong>жирный текст</strong>, <em>курсив</em>, <u>подчёркнутый</u>, <a href="#">ссылку</a>, <span class="highlight">выделенный span</span> и <code>код в строке</code>.</p>
+
+                    <p>Второй абзац. Проверяем отступы между абзацами. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+
+                    <!-- Маркированный список -->
+                    <ul>
+                        <li>Элемент маркированного списка 1</li>
+                        <li>Элемент списка 2 с длинным текстом, чтобы посмотреть, как переносятся строки и ведут себя отступы</li>
+                        <li>Элемент 3
+                            <ul>
+                                <li>Вложенный список — уровень 2</li>
+                                <li>Ещё элемент вложенного списка
+                                    <ul>
+                                        <li>Третий уровень вложенности</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>Элемент 4</li>
+                    </ul>
+
+                    <!-- Нумерованный список -->
+                    <ol>
+                        <li>Первый пункт нумерованного списка</li>
+                        <li>Второй пункт</li>
+                        <li>Третий пункт
+                            <ol>
+                                <li>Вложенный нумерованный список</li>
+                                <li>Ещё пункт вложенного</li>
+                            </ol>
+                        </li>
+                        <li>Четвёртый пункт</li>
+                    </ol>
+
+                    <!-- Список определений -->
+                    <dl>
+                        <dt>HTML</dt>
+                        <dd>Язык разметки гипертекста</dd>
+                        <dt>CSS</dt>
+                        <dd>Каскадные таблицы стилей</dd>
+                        <dt>JavaScript</dt>
+                        <dd>Язык программирования для веба</dd>
+                    </dl>
+
+                    <!-- Блок с цитатой -->
+                    <blockquote>
+                        Это длинная цитата. Здесь можно проверить отступы, шрифт и фон. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        <footer>— Автор цитаты</footer>
+                    </blockquote>
+
+                    <!-- Короткая цитата в строке -->
+                    <p>Как сказал кто-то: <q>Краткость — сестра таланта</q>, и это правда.</p>
+
+                    <!-- Преформатированный текст -->
+                    <pre>
+                function test() {
+                    console.log("Проверяем моноширинный шрифт");
+                    return true;
+                }
+                    </pre>
+
+                    <!-- Горизонтальная линия -->
+                    <hr>
+
+                    <!-- Таблица для тестирования -->
+                    <table border="1" cellpadding="8" style="border-collapse: collapse; width: 100%;">
+                        <caption>Пример таблицы</caption>
+                        <thead>
+                            <tr><th>Заголовок 1</th><th>Заголовок 2</th><th>Заголовок 3</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Ячейка 1</td><td>Ячейка 2</td><td>Ячейка 3</td></tr>
+                            <tr><td>Данные A</td><td>Данные B</td><td>Данные C</td></tr>
+                        </tbody>
+                    </table>
+
+                    <!-- Дополнительные строчные элементы -->
+                    <p>
+                        <small>Маленький текст</small> | 
+                        <mark>Выделенный маркером</mark> | 
+                        <del>Зачёркнутый</del> | 
+                        <ins>Вставленный</ins> | 
+                        <sub>подстрочный</sub> / <sup>надстрочный</sup>
+                    </p>
+
+                    <!-- Кнопка для проверки интерактива -->
+                    <button type="button">Обычная кнопка</button>
+
+                    <!-- Простой адрес -->
+                    <address>
+                        Автор: test@example.com<br>
+                        Страница тестирования стилей
+                    </address>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="mt-auto">
+        <div class="container mt-5 mb-5">
+            <div class="row">
+                <div class="col-lg-4 text-center text-lg-start">
+                    © 2026 Aura Lagoon
+                </div>
+                <div class="col-lg-4 text-center mt-4 mb-4 mt-lg-0 mb-lg-0">
+                    <a href="#">Политика конфиденциальности</a>
+                </div>
+                <div class="col-lg-4 text-center text-lg-end">
+                    <a href="https://losdesign.ru" target="_blank">Разработка сайта</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="modal fade" id="application">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Получить консультацию</h1>
+                    <button class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="#" method="post" class="needs-validation" novalidate>
+                        <div class="form-floating mb-3">
+                            <input type="text" name="name" class="form-control" id="nameInput" placeholder="Ваше имя" required>
+                            <label for="nameInput">Ваше имя</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" name="phone" class="phone__mask form-control" id="phoneInput" placeholder="Ваш телефон" required>
+                            <label for="phoneInput">Ваш телефон</label>
+                        </div>
+                        <button type="submit" class="btn w-100 p-3 rounded-4">Отправить</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="getOffer">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Получить предложение</h1>
+                    <button class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="#" method="post" class="needs-validation" novalidate>
+                        <div class="form-floating mb-3">
+                            <input type="text" name="name" class="form-control" id="nameInput2" placeholder="Ваше имя" required>
+                            <label for="nameInput2">Ваше имя</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" name="phone" class="phone__mask form-control" id="phoneInput2" placeholder="Ваш телефон" required>
+                            <label for="phoneInput2">Ваш телефон</label>
+                        </div>
+                        <button type="submit" class="btn w-100 p-3 rounded-4">Отправить</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="success">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Получить консультацию</h1>
+                    <button class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <picture>
+                        <img src="img/success.svg" alt="" class="mb-3">
+                    </picture>
+                    <p>Ваша заявка успешно отправлена!</p>
+                    <p class="m-0">Мы скоро свяжемся с вами!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="offcanvas offcanvas-end" id="menu">
+        <div class="offcanvas-header pt-4 pe-4">
+            <button class="btn-close" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul class="hambuger__menu" data-bs-dismiss="offcanvas">
+                <li>
+                    <a href="#about" class="topLink">О проекте</a>
+                </li>
+                <li>
+                    <a href="#plans" class="topLink">Планировки</a>
+                </li>
+                <li>
+                    <a href="#map" class="topLink">Карта комплекса</a>
+                </li>
+                <li>
+                    <a href="#benefits" class="topLink">Преимущества</a>
+                </li>
+                <li>
+                    <a href="#articles" class="topLink">Полезная информация</a>
+                </li>
+                <li>
+                    <a href="#contacts" class="topLink">Контакты</a>
+                </li>
+            </ul>
+            <div class="hambuger__menu__buttons">
+                <a href="tel:+79180069131">+7 918 006 91 31</a>
+                <button data-bs-toggle="modal" data-bs-target="#application">
+                    Получить консультацию
+                </button>
+                <a href="#" class="build__progress">
+                    Ход строительства
+                    <span></span>
+                </a>
+                <div>
+                    <a href="#" target="_blank">
+                        <picture>
+                            <img src="img/inst.svg" alt="">
+                        </picture>
+                    </a>
+                    <a href="#" target="_blank">
+                        <picture>
+                            <img src="img/telegram.svg" alt="">
+                        </picture>
+                    </a>
+                    <a href="#" target="_blank">
+                        <picture>
+                            <img src="img/whatsapp.svg" alt="">
+                        </picture>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="offcanvas offcanvas-top" id="wishlist__container">
+        <button class="btn-close" data-bs-dismiss="offcanvas"></button>
+        <div class="offcanvas-body p-4 p-lg-5">
+            <div class="row">
+                <div class="col-12 mb-1">
+                    <h2>Сохраненные планировки</h2>
+                </div>
+                <div class="col-6 col-md-4 col-lg-3 mt-4">
+                    <div class="plan__card">
+                        <div class="ratio ratio-4x3">
+                            <div>
+                                <svg width="34" height="30" viewBox="0 0 34 30" fill="#3F3F3F" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M3.74517 3.36853C7.40539 -0.113705 13.3398 -0.113545 17 5.78629C20.6602 -0.113705 26.5946 -0.113705 30.2548 3.36853C33.9151 6.87798 33.9151 12.7817 30.2548 16.2912L17 29L3.74517 16.2912C0.0849448 12.7817 0.0849448 6.87798 3.74517 3.36853Z" stroke="#3F3F3F" stroke-width="2" stroke-linejoin="round"/>
+                                </svg>
+                                <picture data-fancybox="plan" data-src="img/p3.png">
+                                    <img src="img/p3.png" alt="">
+                                </picture>
+                            </div>
+                        </div>
+                        <p>Вариант 3</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Стили -->
+    <link rel="stylesheet" href="css/owl.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/fancybox.css">
+    <link rel="stylesheet" href="css/aos.css">
+    <!-- Скрипты -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/fancybox.umd.js"></script>
+    <script src="js/owl.carousel.js"></script>
+    <script src="js/jquery.maskedinput.js"></script>
+    <script src="js/scripts.js"></script>
+    <script src="js/gsap.js"></script>
+    <script src="js/aos.js"></script>
+
+</body>
+
+</html>

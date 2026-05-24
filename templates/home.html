@@ -1,0 +1,412 @@
+{% extends 'includes/base.html' %}
+
+{% load static %}
+{% load my_filters %}
+
+{% block title %}
+    Lagoona — Resort & Spa
+{% endblock %}
+
+{% block content %}
+    <picture class="d-none d-lg-block">
+        <img src="{% static 'img/palm.png' %}" alt="" class="img1 p1">
+    </picture>
+    <main>
+        <div class="container-fluid block__1">
+            <div class="row">
+                <div class="col">
+                    {{ hero_block | safe }}
+                    <button data-bs-toggle="modal" data-bs-target="#getOffer">Получить предложение</button>
+                </div>
+            </div>
+            <video autoplay muted loop playsinline class="video__block">
+                <source src="{% static 'video2.mp4' %}" type="video/mp4">
+            </video>
+        </div>
+        <div class="container block__2">
+            <div class="row">
+                <div class="col">
+                    {% for v in vars %}
+                        {% if v.name == 'big' %}
+                            <div>
+                                <div>
+                                    {{ v.text_3 | safe }}
+                                </div>
+                                {% if v.image %}
+                                    <picture>
+                                        <img src="{{ v.image.url }}" alt="">
+                                    </picture>
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="container block__3" id="about">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    {{ about | safe }}
+                </div>
+                <div class="col-lg-6">
+                    <div class="owl-carousel owl-theme photos">
+                        {% for photo in photos %}
+                            {% if photo.image %}
+                                <div class="item ratio ratio-4x3">
+                                    <div>
+                                        <picture data-fancybox="gal" data-src="{{ photo.image.url }}">
+                                            <img src="{{ photo.image.url }}" alt="">
+                                        </picture>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container block__4" id="plans">
+            <div class="row">
+                <div class="col-12 text-center mb-lg-3">
+                    <h2>Планировки</h2>
+                </div>
+                {% for layout in layouts %}
+                    <div class="col-6 col-md-4 col-lg-3 mt-4">
+                        <div class="plan__card">
+                            <div class="ratio ratio-4x3">
+                                <div>
+                                    <form action="{% url 'content:wishlist' %}" method="post">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="pk" value="{{ layout.pk }}">
+                                        {% if layout.pk in wishlist %}
+                                            <button type="submit">
+                                                <svg width="34" height="30" viewBox="0 0 34 30" fill="#3F3F3F" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M3.74517 3.36853C7.40539 -0.113705 13.3398 -0.113545 17 5.78629C20.6602 -0.113705 26.5946 -0.113705 30.2548 3.36853C33.9151 6.87798 33.9151 12.7817 30.2548 16.2912L17 29L3.74517 16.2912C0.0849448 12.7817 0.0849448 6.87798 3.74517 3.36853Z" stroke="#3F3F3F" stroke-width="2" stroke-linejoin="round"/>
+                                                </svg>
+                                            </button>
+                                        {% else %}
+                                            <button type="submit">
+                                                <svg width="34" height="30" viewBox="0 0 34 30" fill="#fff" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M3.74517 3.36853C7.40539 -0.113705 13.3398 -0.113545 17 5.78629C20.6602 -0.113705 26.5946 -0.113705 30.2548 3.36853C33.9151 6.87798 33.9151 12.7817 30.2548 16.2912L17 29L3.74517 16.2912C0.0849448 12.7817 0.0849448 6.87798 3.74517 3.36853Z" stroke="#3F3F3F" stroke-width="2" stroke-linejoin="round"/>
+                                                </svg>
+                                            </button>
+                                        {% endif %}
+                                    </form>
+                                    {% if layout.image %}
+                                        <picture data-fancybox="plan" data-src="{{ layout.image.url }}">
+                                            <img src="{{ layout.image.url }}" alt="">
+                                        </picture>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <p>{{ layout }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+                <div class="col-12">
+                    <div>
+                        {{ layouts_text | safe }}
+                        <button data-bs-toggle="modal" data-bs-target="#application">Получить консультацию</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid block__5" id="map">
+            <div class="row">
+                <div class="col-12 text-center mb-4 mb-lg-5">
+                    <h2>Карта комплекса</h2>
+                </div>
+                <div class="col-12">
+                    <picture>
+                        <img src="{% static 'img/map.png' %}" alt="">
+                    </picture>
+                </div>
+            </div>
+        </div>
+        <div class="container block__6" id="benefits">
+            <div class="row">
+                <div class="col-12 text-center mb-4 mb-md-5">
+                    <h2>Всё лучшее — рядом</h2>
+                </div>
+                <div class="col-12 mt-3">
+                    <div class="owl-carousel owl-theme slider">
+                        {% for attraction in attractions %}
+                            <div class="item">
+                                <div class="row">
+                                    <div class="col-10 offset-1">
+                                        <div class="row align-items-center">
+                                            <div class="col-10 offset-1 offset-md-0 col-md-5 col-xl-4">
+                                                {% if attraction.image %}
+                                                    <div class="ratio ratio-1x1">
+                                                        <div>
+                                                            <picture>
+                                                                <img src="{{ attraction.image.url }}" alt="">
+                                                            </picture>
+                                                        </div>
+                                                    </div>
+                                                {% endif %}
+                                            </div>
+                                            <div class="col-xl-7 offset-xl-1 mt-4 mt-md-5 mt-xl-0 text-center text-md-start">
+                                                <h3>Красная Поляна</h3>
+                                                {{ attraction.text | safe }}
+                                                {% if attraction.get_tags %}
+                                                    <ul>
+                                                        {% for item in attraction.get_tags %}
+                                                            <li>{{ item }}</li>
+                                                        {% endfor %}
+                                                    </ul>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid block__7">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center text-lg-start">
+                        <h2>Идеальное расположение</h2>
+                        <h3>максимум преимуществ без компромиссов</h3>
+                    </div>
+                    {% for card in cards %}
+                        {% if card.type == 'benefits' %}
+                            <div class="col-md-6 col-lg-4 mt-5 text-center text-lg-start">
+                                {% if card.image %}
+                                    <picture>
+                                        <img src="{{ card.image.url }}" alt="">
+                                    </picture>
+                                {% endif %}
+                                <h4>{{ card }}</h4>
+                                <p>{{ card.text }}</p>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="container block__8">
+            <div class="row align-items-center">
+                <div class="col-lg-5">
+                    {% if garant.image %}
+                        <picture>
+                            <img src="{{ garant.image.url }}" alt="">
+                        </picture>
+                    {% endif %}
+                </div>
+                <div class="col-lg-7">
+                    <div>
+                        {{ garant.text_3 | safe }}
+                        <button data-bs-toggle="modal" data-bs-target="#application">Оставить заявку на консультацию</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container block__9">
+            <div class="row align-items-center justify-content-between">
+                <div class="col-lg-7">
+                    <h3>Концепция</h3>
+                    <h2>«Город в городе»: отдых и сервис на территории!</h2>
+                </div>
+                <div class="col-lg-4 block__9__p">
+                    <p>Основная идея — активный образ жизни и полная автономность. На территории будет создана вся необходимая
+                        инфраструктура</p>
+                </div>
+            </div>
+            <div class="row concept__block">
+                <div class="col-lg-5 mb-4 mb-lg-0 concept__block__tabs nav">
+                    {% for card in concept_cards %}
+                        <button class="nav-link {% if forloop.first %} active {% endif %}" data-bs-toggle="pill" data-bs-target="#concept_{{ card.pk }}">
+                            <span>
+                                {{ card.svg_icon | safe }}
+                            </span>
+                            {{ card }}
+                        </button>
+                    {% endfor %}
+                </div>
+                <div class="col-lg-7">
+                    <div class="tab-content">
+                        {% for card in concept_cards %}
+                            <div class="tab-pane fade {% if forloop.first %} show active {% endif %}" id="concept_{{ card.pk }}">
+                                <div class="ratio ratio-21x9">
+                                    <div>
+                                        {% if card.image %}
+                                            <picture>
+                                                <img src="{{ card.image.url }}" alt="">
+                                            </picture>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <p>{{ card.text }}</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid block__10">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-5">
+                        <div class="block__10__zag">
+                            <h2>Безопасность и приватность</h2>
+                            <p>в новом районе</p>
+                            <button data-bs-toggle="modal" data-bs-target="#application">Получить консультацию</button>
+                        </div>
+                    </div>
+                    <div class="col-xl-7 mt-5 mt-xl-0">
+                        <div class="block__10__items">
+                            {% for card in cards %}
+                                {% if card.type == 'secure' %}
+                                    <div>
+                                        <div>
+                                            <h3>{{ card }}</h3>
+                                            <p>{{ card.text }}</p>
+                                        </div>
+                                        {% if card.image %}
+                                            <picture>
+                                                <img src="{{ card.image.url }}" alt="">
+                                            </picture>
+                                        {% endif %}
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container block__11">
+            <div class="row">
+                <div class="col text-center">
+                    <h2>Лучшее предложение на рынке</h2>
+                </div>
+            </div>
+        </div>
+        <div class="block__12">
+            {% for card in cards %}
+                {% if card.type == 'offer' %}
+                    <div>
+                        <div>
+                            {% if card.image %}
+                                <picture>
+                                    <img src="{{ card.image.url }}" alt="">
+                                </picture>
+                            {% endif %}
+                            <h3>{{ card }}</h3>
+                            <p>{{ card.text }}</p>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="container block__13" id="articles">
+            <div class="row align-items-center">
+                <div class="col-lg-8 order-1">
+                    <h2>Полезная информация</h2>
+                </div>
+                <div class="col-lg-4 text-lg-end text-start order-3 order-lg-2 mt-5 mt-lg-0">
+                    <a href="{% url 'content:blog' %}">Перейти в блог</a>
+                </div>
+                <div class="col-12 order-2 order-lg-3">
+                    <div class="row">
+                        {% for article in articles %}
+                            <div class="col-md-6 col-lg-4 mt-5">
+                                <div class="ratio ratio-4x3">
+                                    <div>
+                                        <a href="{% url 'content:article' slug=article.slug %}">
+                                            {% if article.image %}
+                                                <picture>
+                                                    <img src="{{ article.image.url }}" alt="">
+                                                </picture>
+                                            {% endif %}
+                                        </a>
+                                    </div>
+                                </div>
+                                <a href="{% url 'content:article' slug=article.slug %}">
+                                    <h3>{{ article }}</h3>
+                                </a>
+                                <p>{{ article.date }}</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container block__14" id="contacts">
+            <div class="row align-items-center">
+                <div class="col-lg-4">
+                    <h2>Контакты</h2>
+                    <ul>
+                        <li>
+                            <p>
+                                <picture>
+                                    <img src="{% static 'img/location.svg' %}" alt="">
+                                </picture>
+                                {{ location }}
+                            </p>
+                        </li>
+                        <li>
+                            <a href="tel:{{ phone | shorten_phone }}">
+                                <picture>
+                                    <img src="{% static 'img/phone.svg' %}" alt="">
+                                </picture>
+                                {{ phone }}
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mailto:{{ email }}">
+                                <picture>
+                                    <img src="{% static 'img/email.svg' %}" alt="">
+                                </picture>
+                                {{ email }}
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="social__desktop">
+                        <a href="{{ instagram }}" target="_blank">
+                            <picture>
+                                <img src="{% static 'img/inst.svg' %}" alt="">
+                            </picture>
+                        </a>
+                        <a href="{{ telegram }}" target="_blank">
+                            <picture>
+                                <img src="{% static 'img/telegram.svg' %}" alt="">
+                            </picture>
+                        </a>
+                        <a href="{{ whatsapp }}" target="_blank">
+                            <picture>
+                                <img src="{% static 'img/whatsapp.svg' %}" alt="">
+                            </picture>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-7 offset-lg-1 mt-5 mt-lg-0">
+                    <div class="map">
+                        {{ map | safe }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid block__15">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        {% for document in documents %}
+                            <a href="{{ document.file.url }}" target="_blank">
+                                <picture>
+                                    <img src="{% static 'img/file.svg' %}" alt="">
+                                </picture>
+                                {{ document }}
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

@@ -1,0 +1,29 @@
+# Логи
+debug.log
+errors.log
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Настройки редактора (VSCode)
+.vscode/
+
+# Папка с виртуальным окружением
+venv/
+.venv/
+
+# Системный файл (MacOS)
+.DS_Store
+
+# База данных
+*.sqlite3
+
+# Папки с загруженными данными
+media/
+
+# Папка с тестовыми сообщениями
+sent_emails/
+
+*.mp4

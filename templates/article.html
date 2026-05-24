@@ -1,0 +1,84 @@
+{% extends 'includes/base.html' %}
+
+{% load static %}
+{% load my_filters %}
+
+{% block title %}
+    {{ article }} — Lagoona Resort & Spa
+{% endblock %}
+
+{% block content %}
+    <main>
+        <div class="container-fluid inner__header">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <ul>
+                            <li><a href="{% url 'content:home' %}">Главная</a></li>
+                            <li>»</li>
+                            <li><a href="{% url 'content:blog' %}">Блог</a></li>
+                            <li>»</li>
+                            <li>{{ article }}</li>
+                        </ul>
+                        <h1>{{ article }}</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container mt-5 mb-5">
+            <div class="row justify-content-between">
+                <div class="col-lg-8">
+                    {% if article.image %}
+                        <picture class="article__image">
+                            <img src="{{ article.image.url }}" alt="">
+                        </picture>
+                    {% endif %}
+                    <div class="article__info">
+                        <div>
+                            <span class="article__info__date">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar4-week" viewBox="0 0 16 16">
+                                    <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M2 2a1 1 0 0 0-1 1v1h14V3a1 1 0 0 0-1-1zm13 3H1v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1z"/>
+                                    <path d="M11 7.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm-2 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5z"/>
+                                </svg>
+                                {{ article.date }}
+                            </span>
+                        </div>
+                        <div>
+                            <div class="share__block">
+                                <script src="https://yastatic.net/share2/share.js"></script>
+                                <div class="ya-share2" data-curtain data-shape="round" data-services="messenger,vkontakte,odnoklassniki,telegram,twitter,whatsapp"></div>
+                            </div>
+                        </div>
+                    </div>
+                    {{ article.text | safe }}
+                </div>
+                {% if articles %}
+                    <div class="col-lg-3 block__13 read__also mt-4 mt-lg-0">
+                        <div>
+                            <h5>Читайте также:</h5>
+                            {% for item in articles %}
+                                <div class="col-12 mt-4">
+                                    <div class="ratio ratio-16x9">
+                                        <div>
+                                            <a href="{% url 'content:article' slug=item.slug %}">
+                                                {% if item.image %}
+                                                    <picture>
+                                                        <img src="{{ item.image.url }}" alt="">
+                                                    </picture>
+                                                {% endif %}
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <a href="{% url 'content:article' slug=item.slug %}">
+                                        <h3>{{ item }}</h3>
+                                    </a>
+                                    <p>{{ item.date }}</p>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </main>
+{% endblock %}
