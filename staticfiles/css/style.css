@@ -1498,6 +1498,11 @@ footer a:hover {
     gap: .5rem;
 }
 
+.video__preview {
+    border-radius: 2rem !important;
+    overflow: hidden;
+}
+
 @media (min-width: 1440px) {
 
     .container,

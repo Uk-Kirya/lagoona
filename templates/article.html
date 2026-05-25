@@ -50,6 +50,25 @@
                             </div>
                         </div>
                     </div>
+
+                    {% if article.video %}
+                        <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+                        <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
+
+                        <div class="video__preview ratio ratio-16x9 mb-5">
+                            <video id="player" playsinline controls>
+                                <source src="{{ article.video.url }}" type="video/mp4" />
+                            </video>
+                        </div>
+
+                        <script>
+                            const player = new Plyr('#player', {
+                                controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'fullscreen'],
+                                settings: [],
+                            });
+                        </script>
+                    {% endif %}
+
                     {{ article.text | safe }}
                 </div>
                 {% if articles %}

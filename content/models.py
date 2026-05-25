@@ -270,6 +270,7 @@ class Article(models.Model):
     title = models.CharField(max_length=500, blank=False, verbose_name='Заголовок')
     date = models.DateField(auto_now_add=False, blank=False, verbose_name='Дата публикации')
     image = models.ImageField(upload_to=path_to_articles_images, blank=False, verbose_name='Картинка')
+    video = models.FileField(upload_to=path_to_articles_images, blank=True, verbose_name='Видео-файл')
     text = RichTextUploadingField(blank=False, verbose_name='Текст')
     slug = models.SlugField(max_length=500, blank=False, verbose_name='Slug')
     is_active = models.BooleanField(default=True, verbose_name='Активная?')
