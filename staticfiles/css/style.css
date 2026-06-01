@@ -612,13 +612,13 @@ header .col > div > picture:hover {
 }
 
 .photos .owl-dots {
-    width: calc(100% - 3rem);
+    width: calc(100% - 2rem);
     position: absolute;
-    bottom: 2rem;
-    left: 1.5rem;
+    bottom: 1rem;
+    left: 1rem;
     margin: 0;
     display: flex;
-    gap: 1.5rem;
+    gap: .5rem;
 }
 
 .photos .owl-dots button {
@@ -1827,10 +1827,6 @@ footer a:hover {
 
     .photos {
         border-radius: 2rem;
-    }
-
-    .photos .owl-dots {
-        bottom: 1.5rem;
     }
 
     .block__4 {

@@ -26,7 +26,13 @@ $(document).ready(function () {
         dots: true,
         autoHeight: true,
         loop: true,
-        items: 1
+        items: 1,
+        autoplay: true,
+        autoplayTimeout: 3000,
+        autoplayHoverPause: true,
+        autoplaySpeed: 2000,
+        animateOut: 'fadeOut',
+        animateIn: 'fadeIn'
     });
 })
 
