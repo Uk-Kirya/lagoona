@@ -24,6 +24,7 @@ def context_all(request: HttpRequest) -> dict[str, Any]:
         "policy": Variable.objects.get(name='policy').text_3,
         "wishlist": wishlist,
         "wishlist_items": Layout.objects.filter(id__in=wishlist),
+        "genplan": Variable.objects.get(name='genplan').image,
     }
 
     return context

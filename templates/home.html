@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block content %}
-    <picture class="d-none d-lg-block">
+    <picture class="palm__image">
         <img src="{% static 'img/palm.png' %}" alt="" class="img1 p1">
     </picture>
     <main>
@@ -45,10 +45,10 @@
         </div>
         <div class="container block__3" id="about">
             <div class="row align-items-center">
-                <div class="col-lg-6">
+                <div class="col-xl-3">
                     {{ about | safe }}
                 </div>
-                <div class="col-lg-6">
+                <div class="col-md-8 col-xl-6">
                     <div class="owl-carousel owl-theme photos">
                         {% for photo in photos %}
                             {% if photo.image %}
@@ -62,6 +62,23 @@
                             {% endif %}
                         {% endfor %}
                     </div>
+                </div>
+                <div class="col-md-4 col-xl-3 mt-4 mt-md-0">
+                    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+                    <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
+
+                    <div class="rounded-2 video__main ratio ratio-3x4">
+                        <video id="player" playsinline controls>
+                            <source src="{% static 'video2.mp4' %}" type="video/mp4" />
+                        </video>
+                    </div>
+
+                    <script>
+                        const player = new Plyr('#player', {
+                            controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'fullscreen'],
+                            settings: [],
+                        });
+                    </script>
                 </div>
             </div>
         </div>
@@ -114,11 +131,11 @@
         <div class="container-fluid block__5" id="map">
             <div class="row">
                 <div class="col-12 text-center mb-4 mb-lg-5">
-                    <h2>Карта комплекса</h2>
+                    <h2>Генплан</h2>
                 </div>
                 <div class="col-12">
                     <picture>
-                        <img src="{% static 'img/map.png' %}" alt="">
+                        <img src="{{ genplan.url }}" alt="">
                     </picture>
                 </div>
             </div>
