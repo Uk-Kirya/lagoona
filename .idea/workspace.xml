@@ -6,8 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="d57c4344-26d5-4cd7-8e68-70c6405da8aa" name="Changes" comment="">
       <change beforePath="$USER_HOME$/logoona/.idea/workspace.xml" beforeDir="false" afterPath="$USER_HOME$/logoona/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$USER_HOME$/logoona/static/css/style.css" beforeDir="false" afterPath="$USER_HOME$/logoona/static/css/style.css" afterDir="false" />
-      <change beforePath="$USER_HOME$/logoona/static/js/scripts.js" beforeDir="false" afterPath="$USER_HOME$/logoona/static/js/scripts.js" afterDir="false" />
+      <change beforePath="$USER_HOME$/logoona/templates/home.html" beforeDir="false" afterPath="$USER_HOME$/logoona/templates/home.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,7 +108,8 @@
       <workItem from="1779691356826" duration="707000" />
       <workItem from="1779726590084" duration="3324000" />
       <workItem from="1780305034761" duration="3645000" />
-      <workItem from="1780309902284" duration="284000" />
+      <workItem from="1780309902284" duration="328000" />
+      <workItem from="1780310693559" duration="34000" />
     </task>
     <servers />
   </component>
