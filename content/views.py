@@ -119,3 +119,4 @@ def agreed_to_policy(request: HttpRequest) -> JsonResponse:
         return JsonResponse({'status': 'ok'})
     else:
         return JsonResponse({'status': 'error'}, status=400)
+

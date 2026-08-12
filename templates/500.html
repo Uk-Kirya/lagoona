@@ -4,7 +4,7 @@
 {% load my_filters %}
 
 {% block title %}
-    404 — Страница не найдена
+    500 — Ошибка сервера
 {% endblock %}
 
 {% block content %}
@@ -13,9 +13,9 @@
         <div class="container">
             <div class="row">
                 <div class="col text-center bg__not__found__text">
-                    <h1>404</h1>
-                    <p class="fs-1 mb-5">Страница не найдена</p>
-                    <a href="{% url 'content:home' %}">На главную</a>
+                    <h1>500</h1>
+                    <p class="fs-2">На сервере возникла ошибка.</p>
+                    <p class="fs-6">Мы ее уже решаем. Пожалуйста, зайдите на сайт позже.</p>
                 </div>
             </div>
         </div>

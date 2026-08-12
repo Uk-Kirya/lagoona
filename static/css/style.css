@@ -1552,6 +1552,30 @@ footer a:hover {
     background-color: var(--green);
 }
 
+.bg__not__found__page {
+    background-color: var(--primary);
+    width: 100%;
+    height: 120px;
+    border-radius: 0 0 2rem 2rem;
+    margin-bottom: 5rem;
+}
+
+.bg__not__found__text h1 {
+    font-size: 9rem;
+    color: var(--primary);
+}
+
+.bg__not__found__text a {
+    padding: 1rem 3rem;
+    background-color: var(--blue);
+    color: var(--white);
+    border-radius: 5rem;
+}
+
+.bg__not__found__text a:hover {
+    background-color: var(--green);
+}
+
 @media (min-width: 1440px) {
 
     .container,
@@ -2110,5 +2134,10 @@ footer a:hover {
     #policyAlert button {
         font-size: .75rem;
         width: 100%;
+    }
+
+    .bg__not__found__page {
+        height: 96px;
+        border-radius: 0 0 1rem 1rem;
     }
 }
