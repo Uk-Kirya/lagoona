@@ -1,34 +1,40 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" prefix="og: https://ogp.me/ns#">
 
 {% load static %}
+{% load my_filters %}
 
 <head>
-    <title>{% block title %}{% endblock %}</title>
+    <title>{% block title %}Lagoona — инвестиции в недвижимость в Абхазии{% endblock %}</title>
     <meta charset="utf-8">
     <link rel="shortcut icon" href="{% static 'fav.png' %}" type="image/png">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=4">
-
-    <script type="application/ld+json">{% block schema %}{% endblock %}</script>
-
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-    <meta name="robots" content="index, follow">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=5">
 
-    <!-- Open Graph (для Facebook, Instagram и мессенджеров) -->
-    <meta property="og:title" content="">
-    <meta property="og:description" content="">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="{{ url }}">
-    <meta property="og:image" content="{{ url }}/static/img/logo.svg">
+    <meta name="description" content="{% block meta_description %}Курортный комплекс Lagoona в Абхазии: недвижимость у моря, инфраструктура, планировки и консультация по инвестициям.{% endblock %}">
+    <meta name="keywords" content="{% block meta_keywords %}инвестиции в недвижимость Абхазия, жильё у моря Абхазия, курортный комплекс Lagoona, купить апартаменты Абхазия{% endblock %}">
+    <meta name="robots" content="{% block robots %}index, follow{% endblock %}">
+    <meta name="author" content="Lagoona Resort & Spa">
+    <meta name="theme-color" content="#3f3f3f">
+    <link rel="canonical" href="{% block canonical_url %}{{ canonical_url }}{% endblock %}">
 
-    <!-- Twitter Card -->
+    <meta property="og:locale" content="ru_RU">
+    <meta property="og:site_name" content="Lagoona Resort & Spa">
+    <meta property="og:title" content="{% block og_title %}Lagoona — инвестиции в недвижимость в Абхазии{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}Курортный комплекс Lagoona в Абхазии: недвижимость у моря, инфраструктура, планировки и консультация по инвестициям.{% endblock %}">
+    <meta property="og:type" content="{% block og_type %}website{% endblock %}">
+    <meta property="og:url" content="{% block og_url %}{{ canonical_url }}{% endblock %}">
+    <meta property="og:image" content="{% block og_image %}{{ seo_default_image }}{% endblock %}">
+    <meta property="og:image:alt" content="{% block og_image_alt %}Курортный комплекс Lagoona в Абхазии{% endblock %}">
+
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="">
-    <meta name="twitter:description" content="">
-    <meta name="twitter:image" content="{{ url }}/static/img/logo.svg">
+    <meta name="twitter:title" content="{% block twitter_title %}Lagoona — инвестиции в недвижимость в Абхазии{% endblock %}">
+    <meta name="twitter:description" content="{% block twitter_description %}Курортный комплекс Lagoona в Абхазии: недвижимость у моря, инфраструктура, планировки и консультация по инвестициям.{% endblock %}">
+    <meta name="twitter:image" content="{% block twitter_image %}{{ seo_default_image }}{% endblock %}">
+    <meta name="twitter:image:alt" content="{% block twitter_image_alt %}Курортный комплекс Lagoona в Абхазии{% endblock %}">
+
+    {% block article_meta %}{% endblock %}
+    <script type="application/ld+json">{% block schema %}{"@context":"https://schema.org","@type":"WebPage","url":"{{ canonical_url }}","inLanguage":"ru-RU"}{% endblock %}</script>
 
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript">
@@ -49,7 +55,7 @@
     {% include 'includes/header.html' %}
 
     <div class="call__button">
-        <a href="tel:+79180069131">
+        <a href="tel:{{ phone|shorten_phone }}" aria-label="Позвонить в Lagoona">
             <picture>
                 <img src="{% static 'img/call.svg' %}" alt="">
             </picture>

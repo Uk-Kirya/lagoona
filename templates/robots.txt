@@ -1,4 +1,9 @@
 User-agent: *
 Allow: /
+Disallow: /admin/
+Disallow: /ckeditor/
+Disallow: /send-message/
+Disallow: /wishlist/
+Disallow: /agreed-to-policy/
 
 Sitemap: https://lagoona.group/sitemap.xml

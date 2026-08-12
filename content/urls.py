@@ -7,7 +7,8 @@ from .views import (
     ArticlePageView,
     ApplicationView,
     WishlistView,
-    agreed_to_policy
+    agreed_to_policy,
+    sitemap,
 )
 
 app_name = 'content'
@@ -20,4 +21,5 @@ urlpatterns = [
     path('send-message/', ApplicationView.as_view(), name='send-message'),
     path('wishlist/', WishlistView.as_view(), name='wishlist'),
     path('blog/<slug:slug>', ArticlePageView.as_view(), name='article'),
+    path('sitemap.xml', sitemap, name='sitemap'),
 ]

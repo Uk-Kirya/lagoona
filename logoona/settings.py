@@ -33,8 +33,7 @@ ALLOWED_HOSTS = [
     '89.111.171.134'
 ]
 
-DOMAIN = 'content.group'
-PROTOCOL = 'https'
+SITE_URL = os.environ.get('SITE_URL', 'https://lagoona.group').rstrip('/')
 
 CSRF_TRUSTED_ORIGINS = [
     'http://lagoona.group',

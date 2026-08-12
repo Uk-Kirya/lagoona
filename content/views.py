@@ -1,13 +1,15 @@
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.core.mail import send_mail
-from django.http import HttpRequest, JsonResponse
+from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.template.loader import render_to_string
+from django.utils.html import strip_tags
+from django.utils.text import Truncator
 from django.views import View
 from django.views.generic import TemplateView
 from django.contrib import messages
 
-from content.models import Photo, Layout, Attraction, Card, Document, Article, Application
+from content.models import Photo, Layout, Attraction, Card, Document, Article, Application, HomeSEOBlock
 from logoona import settings
 
 
@@ -21,6 +23,7 @@ class HomePageView(View):
             "concept_cards": Card.objects.filter(is_active=True, type='concept'),
             "documents": Document.objects.filter(is_active=True),
             "articles": Article.objects.filter(is_active=True)[:3],
+            "home_seo": HomeSEOBlock.objects.filter(is_active=True).first(),
         }
         return render(request=request, template_name='home.html', context=context)
 
@@ -47,17 +50,21 @@ class BlogPageView(View):
             "paginator": paginator,
             "articles": articles,
         }
+        if articles.number > 1:
+            context['canonical_url'] = f'{settings.SITE_URL}{request.path}?page={articles.number}'
         return render(request=request, template_name='blog.html', context=context)
 
 
 class ArticlePageView(View):
     def get(self, request, slug):
-        article = get_object_or_404(Article, slug=slug)
+        article = get_object_or_404(Article.objects.filter(is_active=True), slug=slug)
         articles = Article.objects.filter(is_active=True).exclude(pk=article.pk)[:2]
+        meta_description = Truncator(strip_tags(article.text)).chars(160)
 
         context = {
             "article": article,
             "articles": articles,
+            "meta_description": meta_description or 'Новости и полезная информация от Lagoona Resort & Spa.',
         }
 
         return render(request, 'article.html', context=context)
@@ -120,3 +127,16 @@ def agreed_to_policy(request: HttpRequest) -> JsonResponse:
     else:
         return JsonResponse({'status': 'error'}, status=400)
 
+
+def sitemap(request: HttpRequest) -> HttpResponse:
+    articles = Article.objects.filter(is_active=True)
+    latest_article = articles.first()
+    content = render_to_string(
+        'sitemap.xml',
+        {
+            'site_url': settings.SITE_URL,
+            'articles': articles,
+            'latest_article': latest_article,
+        },
+    )
+    return HttpResponse(content, content_type='application/xml; charset=utf-8')

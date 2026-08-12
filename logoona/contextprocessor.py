@@ -1,5 +1,7 @@
 from typing import Any
+from django.conf import settings
 from django.http import HttpRequest
+from django.templatetags.static import static
 
 from content.models import Variable, Layout
 
@@ -8,24 +10,36 @@ def context_all(request: HttpRequest) -> dict[str, Any]:
 
     wishlist = request.session.get('wishlist', [])
 
+    variables = {
+        variable.name: variable
+        for variable in Variable.objects.filter(is_active=True)
+    }
+
+    def get_variable(name: str) -> Variable | None:
+        return variables.get(name)
+
     context = {
-        "vars": Variable.objects.all(),
-        "hero_block": Variable.objects.get(name='hero_block').text_3,
-        "about": Variable.objects.get(name='about').text_3,
-        "layouts_text": Variable.objects.get(name='layouts_text').text_3,
-        "garant": Variable.objects.get(name='garant'),
-        "phone": Variable.objects.get(name='phone').text_1,
-        "location": Variable.objects.get(name='location').text_1,
-        "email": Variable.objects.get(name='email').text_1,
-        "instagram": Variable.objects.get(name='instagram').text_1,
-        "telegram": Variable.objects.get(name='telegram').text_1,
-        "whatsapp": Variable.objects.get(name='whatsapp').text_1,
-        "map": Variable.objects.get(name='map').text_2,
-        "policy": Variable.objects.get(name='policy').text_3,
+        "vars": variables.values(),
+        "hero_block": getattr(get_variable('hero_block'), 'text_3', ''),
+        "about": getattr(get_variable('about'), 'text_3', ''),
+        "layouts_text": getattr(get_variable('layouts_text'), 'text_3', ''),
+        "garant": get_variable('garant'),
+        "phone": getattr(get_variable('phone'), 'text_1', ''),
+        "location": getattr(get_variable('location'), 'text_1', ''),
+        "email": getattr(get_variable('email'), 'text_1', ''),
+        "instagram": getattr(get_variable('instagram'), 'text_1', ''),
+        "telegram": getattr(get_variable('telegram'), 'text_1', ''),
+        "whatsapp": getattr(get_variable('whatsapp'), 'text_1', ''),
+        "map": getattr(get_variable('map'), 'text_2', ''),
+        "policy": getattr(get_variable('policy'), 'text_3', ''),
         "wishlist": wishlist,
         "wishlist_items": Layout.objects.filter(id__in=wishlist),
-        "genplan": Variable.objects.get(name='genplan').image,
+        "genplan": getattr(get_variable('genplan'), 'image', None),
         "agreed_to_policy": request.session.get('agreed_to_policy', False),
+        "site_url": settings.SITE_URL,
+        "canonical_url": f"{settings.SITE_URL}{request.path}",
+        "seo_logo": f"{settings.SITE_URL}{static('img/Logo.svg')}",
+        "seo_default_image": f"{settings.SITE_URL}{static('img/img1.png')}",
     }
 
     return context

@@ -4,27 +4,20 @@
 {% load my_filters %}
 
 {% block title %}
-    Политика конфиденциальности — Lagoona Resort & Spa
+    Политика конфиденциальности — Lagoona
 {% endblock %}
+
+{% block meta_description %}Политика обработки персональных данных сайта Lagoona Resort & Spa.{% endblock %}
+{% block robots %}noindex, follow{% endblock %}
 
 {% block schema %}
     {
       "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Lagoona",
-      "url": "{{ url }}",
-      "logo": "{{ url }}/static/img/logo.svg",
-      "description": "",
-      "sameAs": [
-        "https://www.instagram.com/laguna.resort.apsny"
-      ],
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "+7 800 2222 989",
-        "contactType": "customer service",
-        "areaServed": "RU",
-        "availableLanguage": "ru"
-      }
+      "@type": "WebPage",
+      "@id": "{{ canonical_url }}#webpage",
+      "url": "{{ canonical_url }}",
+      "name": "Политика конфиденциальности — Lagoona",
+      "inLanguage": "ru-RU"
     }
 {% endblock %}
 

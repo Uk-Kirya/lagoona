@@ -297,6 +297,31 @@ class Article(models.Model):
         super().save(*args, **kwargs)
 
 
+class HomeSEOBlock(models.Model):
+    """Редактируемая SEO-статья, которая выводится внизу главной страницы."""
+
+    class Meta:
+        verbose_name = 'SEO-статья на главной'
+        verbose_name_plural = 'SEO-статья на главной'
+
+    title = models.CharField(
+        max_length=255,
+        default='Инвестиции в недвижимость в Абхазии',
+        verbose_name='Заголовок статьи (H2)',
+        help_text='На странице это будет заголовок второго уровня. Не используйте H1 в тексте статьи.',
+    )
+    text = RichTextUploadingField(
+        blank=True,
+        verbose_name='Текст SEO-статьи',
+        help_text='Добавьте статью с подзаголовками H3 и обычными абзацами. Пока поле пустое, блок на сайте не показывается.',
+    )
+    is_active = models.BooleanField(default=True, verbose_name='Показывать на сайте')
+    updated_at = models.DateTimeField(auto_now=True, verbose_name='Обновлено')
+
+    def __str__(self):
+        return self.title
+
+
 class Application(models.Model):
     class Meta:
         verbose_name = 'Заявка'

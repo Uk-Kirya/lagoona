@@ -4,27 +4,26 @@
 {% load my_filters %}
 
 {% block title %}
-    Блог — Lagoona Resort & Spa
+    Блог Lagoona — недвижимость и инвестиции в Абхазии
 {% endblock %}
+
+{% block meta_description %}Новости Lagoona, рынок недвижимости и полезная информация для инвесторов в жильё у моря в Абхазии.{% endblock %}
+{% block meta_keywords %}блог об инвестициях в Абхазии, новости недвижимости Абхазии, жильё у моря Абхазия, Lagoona{% endblock %}
+{% block og_title %}Блог Lagoona — недвижимость и инвестиции в Абхазии{% endblock %}
+{% block og_description %}Новости Lagoona, рынок недвижимости и полезная информация для инвесторов в жильё у моря в Абхазии.{% endblock %}
+{% block twitter_title %}Блог Lagoona — недвижимость и инвестиции в Абхазии{% endblock %}
+{% block twitter_description %}Новости Lagoona, рынок недвижимости и полезная информация для инвесторов в жильё у моря в Абхазии.{% endblock %}
 
 {% block schema %}
     {
       "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Lagoona",
-      "url": "{{ url }}",
-      "logo": "{{ url }}/static/img/logo.svg",
-      "description": "",
-      "sameAs": [
-        "https://www.instagram.com/laguna.resort.apsny"
-      ],
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "+7 800 2222 989",
-        "contactType": "customer service",
-        "areaServed": "RU",
-        "availableLanguage": "ru"
-      }
+      "@type": "CollectionPage",
+      "@id": "{{ canonical_url }}#webpage",
+      "url": "{{ canonical_url }}",
+      "name": "Блог Lagoona — недвижимость и инвестиции в Абхазии",
+      "description": "Новости Lagoona, рынок недвижимости и полезная информация для инвесторов в жильё у моря в Абхазии.",
+      "isPartOf": {"@id": "{{ site_url }}/#website"},
+      "inLanguage": "ru-RU"
     }
 {% endblock %}
 
@@ -53,7 +52,7 @@
                                 <a href="{% url 'content:article' slug=article.slug %}">
                                     {% if article.image %}
                                         <picture>
-                                            <img src="{{ article.image.url }}" alt="">
+                                            <img src="{{ article.image.url }}" alt="{{ article.title }}" loading="lazy" decoding="async">
                                         </picture>
                                     {% endif %}
                                 </a>

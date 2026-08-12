@@ -2,7 +2,7 @@ from adminsortable2.admin import SortableAdminMixin
 from django.contrib import admin
 from django.utils.html import format_html
 
-from .models import Variable, Photo, Layout, Attraction, Card, Document, Article, Application
+from .models import Variable, Photo, Layout, Attraction, Card, Document, Article, Application, HomeSEOBlock
 
 
 @admin.register(Variable)
@@ -104,6 +104,13 @@ class ArticleAdmin(admin.ModelAdmin):
             return "Картинка не загружена"
 
     get_image.short_description = 'Картинка'
+
+
+@admin.register(HomeSEOBlock)
+class HomeSEOBlockAdmin(admin.ModelAdmin):
+    list_display = ('title', 'is_active', 'updated_at')
+    list_editable = ('is_active',)
+    search_fields = ('title', 'text')
 
 
 @admin.register(Application)

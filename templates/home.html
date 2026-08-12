@@ -4,29 +4,60 @@
 {% load my_filters %}
 
 {% block title %}
-    Lagoona — Resort & Spa
+    Lagoona — инвестиции в недвижимость в Абхазии
 {% endblock %}
+
+{% block meta_description %}Курортный комплекс Lagoona в Абхазии: недвижимость у моря, инфраструктура, планировки и консультация по инвестициям.{% endblock %}
+{% block meta_keywords %}инвестиции в недвижимость Абхазия, жильё у моря Абхазия, курортный комплекс Lagoona, купить апартаменты Абхазия{% endblock %}
+{% block og_title %}Lagoona — инвестиции в недвижимость в Абхазии{% endblock %}
+{% block og_description %}Курортный комплекс Lagoona в Абхазии: недвижимость у моря, инфраструктура, планировки и консультация по инвестициям.{% endblock %}
+{% block twitter_title %}Lagoona — инвестиции в недвижимость в Абхазии{% endblock %}
+{% block twitter_description %}Курортный комплекс Lagoona в Абхазии: недвижимость у моря, инфраструктура, планировки и консультация по инвестициям.{% endblock %}
 
 {% block schema %}
     {
       "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Lagoona",
-      "url": "{{ url }}",
-      "logo": "{{ url }}/static/img/logo.svg",
-      "description": "",
-      "sameAs": [
-        "https://www.instagram.com/laguna.resort.apsny"
-      ],
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "+7 800 2222 989",
-        "contactType": "customer service",
-        "areaServed": "RU",
-        "availableLanguage": "ru"
-      }
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "{{ site_url }}/#organization",
+          "name": "Lagoona Resort & Spa",
+          "url": "{{ site_url }}",
+          "logo": "{{ seo_logo }}",
+          "description": "Курортный комплекс Lagoona в Абхазии с недвижимостью у моря и инфраструктурой для отдыха."{% if instagram %},
+          "sameAs": ["{{ instagram|escapejs }}"]{% endif %},
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "{{ phone|escapejs }}",
+            "contactType": "sales",
+            "areaServed": ["Россия", "Абхазия"],
+            "availableLanguage": "ru"
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "{{ site_url }}/#website",
+          "url": "{{ site_url }}",
+          "name": "Lagoona Resort & Spa",
+          "inLanguage": "ru-RU",
+          "publisher": {"@id": "{{ site_url }}/#organization"}
+        },
+        {
+          "@type": "WebPage",
+          "@id": "{{ canonical_url }}#webpage",
+          "url": "{{ canonical_url }}",
+          "name": "Lagoona — инвестиции в недвижимость в Абхазии",
+          "description": "Курортный комплекс Lagoona в Абхазии: недвижимость у моря, инфраструктура, планировки и консультация по инвестициям.",
+          "isPartOf": {"@id": "{{ site_url }}/#website"},
+          "about": {"@id": "{{ site_url }}/#organization"},
+          "inLanguage": "ru-RU"
+        }
+      ]
     }
 {% endblock %}
+
+{% block og_image_alt %}Курортный комплекс Lagoona в Абхазии{% endblock %}
+{% block twitter_image_alt %}Курортный комплекс Lagoona в Абхазии{% endblock %}
 
 {% block content %}
     <picture class="palm__image">
@@ -55,7 +86,7 @@
                                 </div>
                                 {% if v.image %}
                                     <picture>
-                                        <img src="{{ v.image.url }}" alt="">
+                                        <img src="{{ v.image.url }}" alt="Бассейн Beach Entry в комплексе Lagoona" loading="lazy" decoding="async">
                                     </picture>
                                 {% endif %}
                             </div>
@@ -76,7 +107,7 @@
                                 <div class="item ratio ratio-4x3">
                                     <div>
                                         <picture data-fancybox="gal" data-src="{{ photo.image.url }}">
-                                            <img src="{{ photo.image.url }}" alt="">
+                                            <img src="{{ photo.image.url }}" alt="Фотография комплекса Lagoona в Абхазии" loading="lazy" decoding="async">
                                         </picture>
                                     </div>
                                 </div>
@@ -132,7 +163,7 @@
                                     </form>
                                     {% if layout.image %}
                                         <picture data-fancybox="plan" data-src="{{ layout.image.url }}">
-                                            <img src="{{ layout.image.url }}" alt="">
+                                            <img src="{{ layout.image.url }}" alt="Планировка {{ layout.title }} в комплексе Lagoona" loading="lazy" decoding="async">
                                         </picture>
                                     {% endif %}
                                 </div>
@@ -156,7 +187,7 @@
                 </div>
                 <div class="col-12">
                     <picture>
-                        <img src="{{ genplan.url }}" alt="">
+                        <img src="{{ genplan.url }}" alt="Генеральный план комплекса Lagoona" loading="lazy" decoding="async">
                     </picture>
                 </div>
             </div>
@@ -178,7 +209,7 @@
                                                     <div class="ratio ratio-1x1">
                                                         <div>
                                                             <picture>
-                                                                <img src="{{ attraction.image.url }}" alt="">
+                                                                <img src="{{ attraction.image.url }}" alt="{{ attraction.title }} рядом с комплексом Lagoona" loading="lazy" decoding="async">
                                                             </picture>
                                                         </div>
                                                     </div>
@@ -216,7 +247,7 @@
                             <div class="col-md-6 col-lg-4 mt-5 text-center text-lg-start">
                                 {% if card.image %}
                                     <picture>
-                                        <img src="{{ card.image.url }}" alt="">
+                                        <img src="{{ card.image.url }}" alt="{{ card.title }} — преимущество комплекса Lagoona" loading="lazy" decoding="async">
                                     </picture>
                                 {% endif %}
                                 <h4>{{ card }}</h4>
@@ -232,7 +263,7 @@
                 <div class="col-lg-5">
                     {% if garant.image %}
                         <picture>
-                            <img src="{{ garant.image.url }}" alt="">
+                            <img src="{{ garant.image.url }}" alt="Гарантия юридической чистоты Lagoona" loading="lazy" decoding="async">
                         </picture>
                     {% endif %}
                 </div>
@@ -274,7 +305,7 @@
                                     <div>
                                         {% if card.image %}
                                             <picture>
-                                                <img src="{{ card.image.url }}" alt="">
+                                                <img src="{{ card.image.url }}" alt="{{ card.title }} в комплексе Lagoona" loading="lazy" decoding="async">
                                             </picture>
                                         {% endif %}
                                     </div>
@@ -307,7 +338,7 @@
                                         </div>
                                         {% if card.image %}
                                             <picture>
-                                                <img src="{{ card.image.url }}" alt="">
+                                                <img src="{{ card.image.url }}" alt="{{ card.title }} — безопасность комплекса Lagoona" loading="lazy" decoding="async">
                                             </picture>
                                         {% endif %}
                                     </div>
@@ -332,7 +363,7 @@
                         <div>
                             {% if card.image %}
                                 <picture>
-                                    <img src="{{ card.image.url }}" alt="">
+                                    <img src="{{ card.image.url }}" alt="{{ card.title }} — предложение Lagoona" loading="lazy" decoding="async">
                                 </picture>
                             {% endif %}
                             <h3>{{ card }}</h3>
@@ -359,7 +390,7 @@
                                         <a href="{% url 'content:article' slug=article.slug %}">
                                             {% if article.image %}
                                                 <picture>
-                                                    <img src="{{ article.image.url }}" alt="">
+                                                    <img src="{{ article.image.url }}" alt="{{ article.title }}" loading="lazy" decoding="async">
                                                 </picture>
                                             {% endif %}
                                         </a>
@@ -463,5 +494,17 @@
                 </div>
             </div>
         </div>
+        {% if home_seo and home_seo.text %}
+            <section class="container seo-content" aria-labelledby="seo-content-title">
+                <div class="row">
+                    <article class="col-lg-10">
+                        <h2 id="seo-content-title">{{ home_seo.title }}</h2>
+                        <div class="seo-content__text">
+                            {{ home_seo.text | safe }}
+                        </div>
+                    </article>
+                </div>
+            </section>
+        {% endif %}
     </main>
 {% endblock %}
