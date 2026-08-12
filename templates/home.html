@@ -417,21 +417,27 @@
                         -->
                     </ul>
                     <div class="social__desktop">
-                        <a href="{{ instagram }}" target="_blank">
-                            <picture>
-                                <img src="{% static 'img/inst.svg' %}" alt="">
-                            </picture>
-                        </a>
-                        <a href="{{ telegram }}" target="_blank">
-                            <picture>
-                                <img src="{% static 'img/telegram.svg' %}" alt="">
-                            </picture>
-                        </a>
-                        <a href="{{ whatsapp }}" target="_blank">
-                            <picture>
-                                <img src="{% static 'img/whatsapp.svg' %}" alt="">
-                            </picture>
-                        </a>
+                        {% if instagram %}
+                            <a href="{{ instagram }}" target="_blank">
+                                <picture>
+                                    <img src="{% static 'img/inst.svg' %}" alt="">
+                                </picture>
+                            </a>
+                        {% endif %}
+                        {% if telegram %}
+                            <a href="{{ telegram }}" target="_blank">
+                                <picture>
+                                    <img src="{% static 'img/telegram.svg' %}" alt="">
+                                </picture>
+                            </a>
+                        {% endif %}
+                        {% if whatsapp %}
+                            <a href="{{ whatsapp }}" target="_blank">
+                                <picture>
+                                    <img src="{% static 'img/whatsapp.svg' %}" alt="">
+                                </picture>
+                            </a>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="col-lg-7 offset-lg-1 mt-5 mt-lg-0">
