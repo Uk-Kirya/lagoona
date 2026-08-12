@@ -2094,4 +2094,21 @@ footer a:hover {
     .inner__header h1 {
         font-size: 2rem;
     }
+
+    #policyAlert {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+        left: .5rem;
+        right: .5rem;
+        bottom: .5rem;
+        font-size: .8rem;
+        padding: .75rem;
+        border-radius: 1rem 1rem 1.5rem 1.5rem;
+    }
+
+    #policyAlert button {
+        font-size: .75rem;
+        width: 100%;
+    }
 }

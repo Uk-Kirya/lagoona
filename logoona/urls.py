@@ -24,6 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('content.urls')),
     path('robots.txt', TemplateView.as_view(template_name='robots.txt', content_type='text/plain')),
+    path('llms.txt', TemplateView.as_view(template_name='llms.txt', content_type='text/plain')),
     path('sitemap.xml', TemplateView.as_view(template_name='sitemap.xml', content_type='application/xml')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
 ]
