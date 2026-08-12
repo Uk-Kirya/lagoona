@@ -1,5 +1,6 @@
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.core.mail import send_mail
+from django.http import HttpRequest, JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.template.loader import render_to_string
 from django.views import View
@@ -110,3 +111,11 @@ class WishlistView(View):
         request.session['wishlist'] = wishlist
 
         return redirect(request.META.get('HTTP_REFERER', '/'))
+
+
+def agreed_to_policy(request: HttpRequest) -> JsonResponse:
+    if request.method == "POST":
+        request.session['agreed_to_policy'] = True
+        return JsonResponse({'status': 'ok'})
+    else:
+        return JsonResponse({'status': 'error'}, status=400)

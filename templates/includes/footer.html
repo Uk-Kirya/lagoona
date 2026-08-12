@@ -13,3 +13,21 @@
         </div>
     </div>
 </footer>
+
+{% if not agreed_to_policy %}
+    <div id="policyAlert">
+        <div>
+            Пользуясь данным сайтом, вы соглашаетесь с <a href="{% url 'content:policy' %}">политикой конфиденциальности</a>
+        </div>
+        <button type="button" onclick="agreeToPolicy()">Хорошо</button>
+    </div>
+    <script>
+        function agreeToPolicy() {
+            fetch('{% url "content:agreed_to_policy" %}', { method: 'POST', headers: {'X-CSRFToken': '{{ csrf_token }}'} })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('policyAlert').style.display = 'none';
+                });
+        }
+    </script>
+{% endif %}

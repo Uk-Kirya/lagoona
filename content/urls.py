@@ -6,13 +6,15 @@ from .views import (
     BlogPageView,
     ArticlePageView,
     ApplicationView,
-    WishlistView
+    WishlistView,
+    agreed_to_policy
 )
 
 app_name = 'content'
 
 urlpatterns = [
     path('', HomePageView.as_view(), name='home'),
+    path('agreed-to-policy/', agreed_to_policy, name='agreed_to_policy'),
     path('policy/', PolicyPageView.as_view(), name='policy'),
     path('blog/', BlogPageView.as_view(), name='blog'),
     path('send-message/', ApplicationView.as_view(), name='send-message'),
